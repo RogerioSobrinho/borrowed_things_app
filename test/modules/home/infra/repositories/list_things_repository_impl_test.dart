@@ -1,7 +1,7 @@
 import 'package:borrowed_things/modules/home/domain/entities/things.dart';
 import 'package:borrowed_things/modules/home/domain/errors/errors.dart';
 import 'package:borrowed_things/modules/home/infra/datasource/list_things_datasource.dart';
-import 'package:borrowed_things/modules/home/infra/models/list_things_model.dart';
+import 'package:borrowed_things/modules/home/infra/models/things_model.dart';
 import 'package:borrowed_things/modules/home/infra/repositories/list_things_repository_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,7 +13,7 @@ main() {
   final dataSource = ListThingsDataSourceMock();
   final repository = ListThingsRepositoryImpl(dataSource);
   test('should return list of things', () async {
-    when(dataSource.getAll()).thenAnswer((_) async => <ListThingsModel>[]);
+    when(dataSource.getAll()).thenAnswer((_) async => Right(<ThingsModel>[]));
     final result = await repository.getAll();
     expect(result | null, isA<List<Things>>());
   });

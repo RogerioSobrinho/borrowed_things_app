@@ -12,8 +12,7 @@ class ListThingsRepositoryImpl implements ListThingsRepository {
   @override
   Future<Either<FailureList, List<Things>>> getAll() async {
     try {
-      final result = await this.dataSource.getAll();
-      return Right(result);
+      return await this.dataSource.getAll();
     } catch (error) {
       return Left(DataSourceError());
     }
